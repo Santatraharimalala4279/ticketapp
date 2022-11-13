@@ -1,25 +1,51 @@
+import axios from "axios";
 import "../../assets/css/login.css";
-const Login = () => {
+const Login = ({ setToken }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post(`http://localhost:5000/api/v1/auth/login`, {
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      })
+      .then((response) => {
+        sessionStorage.setItem("token", response.token);
+        sessionStorage.setItem("user", {
+          userId: response.userId,
+          admin: response.admin,
+        });
+        setToken(response.data.token);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <div class="wrapper fadeInDown">
+    <div className="wrapper fadeInDown">
       <div id="formContent">
-        <h2 class="active"> Sign In </h2>
-        <form action="" method="post">
+        <h2 className="active"> Sign In </h2>
+        <form action="#">
           <input
             type="text"
-            id="login"
-            class="fadeIn second"
-            name="login"
+            id="email"
+            className="fadeIn second"
+            name="email"
             placeholder="Email"
           />
           <input
-            type="text"
+            type="password"
             id="password"
-            class="fadeIn third"
+            className="fadeIn third"
             name="login"
             placeholder="Password"
           />
-          <input type="submit" class="fadeIn fourth" value="Log In" />
+          <input
+            type="button"
+            onClick={(e) => handleSubmit(e)}
+            className="fadeIn fourth"
+            value="Log In"
+          />
         </form>
       </div>
     </div>

@@ -1,16 +1,25 @@
 import "../assets/css/header.css";
-const Header = () => {
+
+const Header = ({ token }) => {
   return (
-    <div class="header">
-      <a href="#default" class="logo">
+    <div className="header">
+      <a href="#default" className="logo">
         Tickets Support
       </a>
-      <div class="header-right">
-        <a class="active" href="#home">
-          Tickets
-        </a>
-        <a href="#contact">Register</a>
-        <a href="#about">Sign in</a>
+      <div className="header-right">
+        {token ? (
+          <>
+            <a className="active" href="#home">
+              Tickets
+            </a>
+            <a href="#about">Sign Out</a>
+          </>
+        ) : (
+          <>
+            <a href="#contact">Register</a>
+            <a href="#about">Sign in</a>
+          </>
+        )}
       </div>
     </div>
   );
