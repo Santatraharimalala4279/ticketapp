@@ -1,6 +1,6 @@
 import axios from "axios";
 import "../../assets/css/login.css";
-const Login = ({ setToken }) => {
+const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -9,12 +9,9 @@ const Login = ({ setToken }) => {
         password: document.getElementById("password").value,
       })
       .then((response) => {
-        sessionStorage.setItem("token", response.token);
-        sessionStorage.setItem("user", {
-          userId: response.userId,
-          admin: response.admin,
-        });
-        setToken(response.data.token);
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("userId", response.data.userID);
+        sessionStorage.setItem("admin", response.data.admin);
       })
       .catch((error) => {
         console.log(error);

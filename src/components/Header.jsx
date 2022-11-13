@@ -9,10 +9,18 @@ const Header = ({ token }) => {
       <div className="header-right">
         {token ? (
           <>
-            <a className="active" href="#home">
-              Tickets
-            </a>
-            <a href="#about">Sign Out</a>
+            <a href="/tickets/add">Add Tickets</a>
+            <a href="/tickets/view">View Tickets</a>
+
+            <button
+              className="active"
+              onClick={() => {
+                sessionStorage.clear();
+                window.location.href = "/";
+              }}
+            >
+              Sign Out
+            </button>
           </>
         ) : (
           <>

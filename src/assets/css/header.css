@@ -13,6 +13,18 @@
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
+  
+}
+.header button {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    border: none;
 }
 
 .header a.logo {
@@ -25,7 +37,7 @@
     color: black;
 }
 
-.header a.active {
+.header button.active {
     background-color: dodgerblue;
     color: white;
 }
