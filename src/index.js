@@ -15,7 +15,10 @@ root.render(
     <Router>
       <Header token={localStorage.getItem("token")} />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route
+          path="/"
+          element={localStorage.getItem("token") ? <ViewTickets /> : <Login />}
+        />
         <Route path="/user/register" element={<Register />} />
         <Route path="/tickets/add" element={<AddTickets />} />
         <Route path="/tickets/view" element={<ViewTickets />} />

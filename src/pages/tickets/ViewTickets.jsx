@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import "../../assets/css/viewTickets.css";
 const ViewTickets = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -18,13 +18,19 @@ const ViewTickets = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="main">
       <h1>Tickets</h1>
-      <div>
-        <span>user id and email</span>
-        <p>Description</p>
-        <div>
-          <span>Response</span>
+      <div className="ticket-container">
+        <div className="user-description-ticket">
+          <span>user id and email</span>
+          <p>
+            Description ksldfjqhmlkdshfm hdsflhqmsdjkfhqjsdhflkj
+            lkjhkljsdhfjkshldkjfh
+          </p>
+          <span>File</span>
+        </div>
+        <div className="response-container">
+          <p>Response</p>
         </div>
       </div>
     </div>

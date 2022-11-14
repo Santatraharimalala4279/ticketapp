@@ -14,13 +14,24 @@ const AddTickets = () => {
         userId: localStorage.getItem("userId"),
       })
       .then((response) => {
-        console.log(response);
         setMessage(response.data.message);
-        //const ticketId = response.data.ticketId;
         if (file) {
-          axios.post(basURL + "/file", data).then((response) => {
-            console.log("File saved!");
-          });
+          //Save file of ticket if it has
+          axios
+            .post(basURL + `/file/true/${response.data.ticketId}`, data)
+            .then((response) => {
+              console.log("File saved!");
+              setMessage("File saved!");
+            })
+            .catch((err) => {
+              //Delete the ticket if the file is not saved
+              axios
+                .delete(basURL + `/tickets/${response.data.ticketId}`)
+                .then((response) => {
+                  setMessage("Ticket removed!");
+                });
+              console.log(err);
+            });
         }
       })
       .catch((error) => {

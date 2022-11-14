@@ -1,0 +1,35 @@
+.main{
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.main .ticket-container{
+    margin-left: 2px;
+    
+}
+
+.ticket-container .user-description-ticket{
+    max-width: 100%;
+    min-width: 80%;
+    border: 2px solid rgb(158, 158, 161);
+    border-radius:5px ;
+    box-shadow: 2px 2px 2px 2px rgb(207, 204, 204);
+    padding: 10px;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+}
+.user-description-ticket p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.response-container{
+    margin-left: 15px;
+    max-width: 100%;
+    min-width: 80%;
+    border: 2px solid rgb(158, 158, 161);
+        border-radius: 5px;
+        box-shadow: 2px 2px 2px 2px rgb(207, 204, 204);
+
+}
