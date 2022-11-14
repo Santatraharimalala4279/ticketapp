@@ -17,7 +17,7 @@ const Login = () => {
         setMessage(response.data.message);
         setTimeout(() => {
           window.location.replace("/tickets/view");
-        });
+        }, 1500);
       })
       .catch((error) => {
         console.log(error);

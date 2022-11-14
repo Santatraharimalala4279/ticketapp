@@ -4,6 +4,7 @@ import "../../assets/css/ticketRegistration.css";
 import { basURL } from "../../utils/baseURL";
 const AddTickets = () => {
   const [file, setFile] = useState();
+  const [message, setMessage] = useState();
   const handleSubmit = (event) => {
     const data = new FormData();
     data.append("file", file);
@@ -14,13 +15,17 @@ const AddTickets = () => {
       })
       .then((response) => {
         console.log(response);
+        setMessage(response.data.message);
         //const ticketId = response.data.ticketId;
-        axios.post(basURL + "/file", data).then((response) => {
-          console.log("File saved!");
-        });
+        if (file) {
+          axios.post(basURL + "/file", data).then((response) => {
+            console.log("File saved!");
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
+        setMessage("Erreur survenue!");
       });
   };
   function handleChange(event) {
@@ -31,7 +36,12 @@ const AddTickets = () => {
     <div className="container">
       <form className="container">
         <h1>Create support tickets </h1>
-        <hr></hr>
+        <hr />
+        {message ? (
+          <span style={{ color: "green" }}>{message}</span>
+        ) : (
+          <span style={{ color: "red" }}>{message}</span>
+        )}
         <label htmlFor="description">
           <b>Description</b>
         </label>

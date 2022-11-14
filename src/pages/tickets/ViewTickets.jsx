@@ -10,13 +10,24 @@ const ViewTickets = () => {
     axios
       .get(URL_TICKET)
       .then((response) => {
-        setData(response.data);
+        setData(response);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  return <div>{isLoading ? <div>Loading...</div> : <div></div>}</div>;
+  return (
+    <div>
+      <h1>Tickets</h1>
+      <div>
+        <span>user id and email</span>
+        <p>Description</p>
+        <div>
+          <span>Response</span>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default ViewTickets;
