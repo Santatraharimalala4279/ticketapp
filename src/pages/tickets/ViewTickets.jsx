@@ -23,6 +23,7 @@ const ViewTickets = () => {
       <div className="ticket-container">
         <div className="user-description-ticket">
           <span>user id and email</span>
+          <button style={{ float: "right" }}>Close</button>
           <p>
             Description ksldfjqhmlkdshfm hdsflhqmsdjkfhqjsdhflkj
             lkjhkljsdhfjkshldkjfh
@@ -31,6 +32,7 @@ const ViewTickets = () => {
         </div>
         <div className="response-container">
           <p>Response</p>
+          <p>REspon fds</p>
         </div>
       </div>
     </div>

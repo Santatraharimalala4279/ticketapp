@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../../assets/css/login.css";
 const Register = () => {
   const [message, setMessage] = useState();
+  const [isError, setError] = useState(true);
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -13,12 +14,17 @@ const Register = () => {
       })
       .then((response) => {
         console.log(response);
+        setError(false);
+        setMessage(response.data.message);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.userID);
         localStorage.setItem("admin", response.data.admin);
+        window.location("/");
       })
       .catch((error) => {
         console.log(error);
+        setError(true);
+        setMessage(error.data.message);
       });
   };
 
@@ -27,6 +33,9 @@ const Register = () => {
       <div id="formContent">
         <h2 className="active"> Sign Up </h2>
         <form>
+          <span style={!isError ? { color: "red" } : { color: "green" }}>
+            {message}
+          </span>
           <input
             type="email"
             id="email"

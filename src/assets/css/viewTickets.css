@@ -24,6 +24,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.response-container textarea {
+    margin-top: 5px;
+    margin-right: 10px;
+}
 .response-container{
     margin-left: 15px;
     max-width: 100%;
