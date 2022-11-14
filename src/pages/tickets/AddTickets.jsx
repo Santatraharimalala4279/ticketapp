@@ -10,10 +10,11 @@ const AddTickets = () => {
     axios
       .post(basURL + "/tickets", {
         description: document.getElementById("description").value,
-        userId: sessionStorage.getItem("userId"),
+        userId: localStorage.getItem("userId"),
       })
       .then((response) => {
-        const ticketId = response.data.ticketId;
+        console.log(response);
+        //const ticketId = response.data.ticketId;
         axios.post(basURL + "/file", data).then((response) => {
           console.log("File saved!");
         });
