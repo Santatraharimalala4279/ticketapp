@@ -15,6 +15,9 @@ const Login = () => {
         localStorage.setItem("userId", response.data.userID);
         localStorage.setItem("admin", response.data.admin);
         setMessage(response.data.message);
+        setTimeout(() => {
+          window.location.replace("/tickets/view");
+        });
       })
       .catch((error) => {
         console.log(error);

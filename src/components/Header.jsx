@@ -1,35 +1,36 @@
 import { Link } from "react-router-dom";
 import "../assets/css/header.css";
 
-const Header = ({ token }) => {
+const Header = () => {
+  const token = localStorage.getItem("token");
+  const signOut = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.replace("/");
+  };
   return (
     <div className="header">
-      <a href="#default" className="logo">
+      <Link to="/" className="logo">
         Tickets Support
-      </a>
-      <div className="header-right">
-        {token ? (
+      </Link>
+      <nav className="header-right">
+        {!token ? (
           <>
-            <Link to="/tickets/add">Add Tickets</Link>
-            <a href="/tickets/view">View Tickets</a>
-
-            <button
-              className="active"
-              onClick={() => {
-                sessionStorage.clear();
-                window.location.href = "/";
-              }}
-            >
-              Sign Out
-            </button>
+            <Link to="/">Sign in</Link>
+            <Link to="/user/register" className="active">
+              Register
+            </Link>
           </>
         ) : (
           <>
-            <Link to="/user/register">Register</Link>
-            <a href="/">Sign in</a>
+            <Link to="/tickets/add">Add Ticket</Link>
+            <Link to="/tickets/view">View Tickets</Link>
+            <Link onClick={signOut} className="active">
+              Sign out
+            </Link>
           </>
         )}
-      </div>
+      </nav>
     </div>
   );
 };

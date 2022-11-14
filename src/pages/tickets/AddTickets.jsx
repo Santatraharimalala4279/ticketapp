@@ -38,6 +38,8 @@ const AddTickets = () => {
           placeholder="Enter text here"
           name="description"
           id="description"
+          rows="4"
+          cols="50"
           required
         />
         <label htmlFor="description">
