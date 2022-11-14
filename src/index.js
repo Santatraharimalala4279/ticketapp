@@ -12,10 +12,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <Header token={sessionStorage.getItem("token")} />
+    <Header token={localStorage.getItem("token")} />
     <Router>
       <Routes>
-        {!sessionStorage.getItem("token") ? (
+        {!localStorage.getItem("token") ? (
           <>
             <Route path="/" element={<Login />} />
             <Route path="/user/register" element={<Register />} />

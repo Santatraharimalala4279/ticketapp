@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../assets/css/header.css";
 
 const Header = ({ token }) => {
@@ -9,7 +10,7 @@ const Header = ({ token }) => {
       <div className="header-right">
         {token ? (
           <>
-            <a href="/tickets/add">Add Tickets</a>
+            <Link to="/tickets/add">Add Tickets</Link>
             <a href="/tickets/view">View Tickets</a>
 
             <button
@@ -24,8 +25,8 @@ const Header = ({ token }) => {
           </>
         ) : (
           <>
-            <a href="/user/register">Register</a>
-            <a href="/user/login">Sign in</a>
+            <Link to="/user/register">Register</Link>
+            <a href="/">Sign in</a>
           </>
         )}
       </div>

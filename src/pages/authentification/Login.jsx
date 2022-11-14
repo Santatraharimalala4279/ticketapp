@@ -1,6 +1,8 @@
 import axios from "axios";
+import { useState } from "react";
 import "../../assets/css/login.css";
 const Login = () => {
+  const [message, setMessage] = useState();
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -12,9 +14,11 @@ const Login = () => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.userID);
         localStorage.setItem("admin", response.data.admin);
+        setMessage(response.data.message);
       })
       .catch((error) => {
         console.log(error);
+        setMessage(error.response.data.message);
       });
   };
 
@@ -44,6 +48,7 @@ const Login = () => {
             value="Log In"
           />
         </form>
+        <span>{message}</span>
       </div>
     </div>
   );
