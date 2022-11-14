@@ -24,8 +24,8 @@ const Header = ({ token }) => {
           </>
         ) : (
           <>
-            <a href="#contact">Register</a>
-            <a href="#about">Sign in</a>
+            <a href="/user/register">Register</a>
+            <a href="/user/login">Sign in</a>
           </>
         )}
       </div>

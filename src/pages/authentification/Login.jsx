@@ -9,9 +9,9 @@ const Login = () => {
         password: document.getElementById("password").value,
       })
       .then((response) => {
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("userId", response.data.userID);
-        sessionStorage.setItem("admin", response.data.admin);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.userID);
+        localStorage.setItem("admin", response.data.admin);
       })
       .catch((error) => {
         console.log(error);
