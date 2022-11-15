@@ -6,7 +6,8 @@
 }
 .main .ticket-container{
     margin-left: 2px;
-    
+    margin-bottom: 5px;
+    min-width: 40%;    
 }
 
 .ticket-container .user-description-ticket{
@@ -24,16 +25,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.response-container {
+    margin-left: 15px;
+   width: 35%;
+   margin : auto auto;
+    border: 2px solid rgb(158, 158, 161);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px rgb(207, 204, 204);
+}
 .response-container textarea {
     margin-top: 5px;
     margin-right: 10px;
 }
-.response-container{
-    margin-left: 15px;
-    max-width: 100%;
-    min-width: 80%;
-    border: 2px solid rgb(158, 158, 161);
-        border-radius: 5px;
-        box-shadow: 2px 2px 2px 2px rgb(207, 204, 204);
 
+button.close-button{
+    background-color: rgb(233, 36, 36);
+    color: aliceblue;
+    border: none;
+    border-radius:5px ;
+    float: right;
+    padding: 2px;
 }

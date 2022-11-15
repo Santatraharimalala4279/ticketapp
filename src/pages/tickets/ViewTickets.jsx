@@ -1,16 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../assets/css/viewTickets.css";
+import Ticket from "../../components/Tickets";
+import { basURL } from "../../utils/baseURL";
 const ViewTickets = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const URL_TICKET = "http://localhost:5000/api/v1/tickets";
+  const closeTicket = (e, id) => {
+    e.preventDefault();
+    axios
+      .put(basURL + `/tickets/${id}`)
+      .then((response) => {})
+      .catch();
+  };
   useEffect(() => {
     setLoading(true);
     axios
-      .get(URL_TICKET)
+      .get(basURL + "/tickets")
       .then((response) => {
-        setData(response);
+        setData(response.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -18,24 +27,32 @@ const ViewTickets = () => {
       });
   }, []);
   return (
-    <div className="main">
-      <h1>Tickets</h1>
-      <div className="ticket-container">
-        <div className="user-description-ticket">
-          <span>user id and email</span>
-          <button style={{ float: "right" }}>Close</button>
-          <p>
-            Description ksldfjqhmlkdshfm hdsflhqmsdjkfhqjsdhflkj
-            lkjhkljsdhfjkshldkjfh
-          </p>
-          <span>File</span>
-        </div>
-        <div className="response-container">
-          <p>Response</p>
-          <p>REspon fds</p>
-        </div>
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <div className="loading">Loading....</div>
+      ) : (
+        <>
+          <div className="main">
+            <h1>Tickets</h1>
+            {data &&
+              Object.values(data)[0].map((ticket) => {
+                return (
+                  <Ticket ticket={ticket} key={ticket.id}>
+                    <button
+                      type="button"
+                      className="close-button"
+                      onClick={closeTicket}
+                    >
+                      Close
+                    </button>
+                    <Link to={`/ticket/details/2`}>More details</Link>
+                  </Ticket>
+                );
+              })}
+          </div>
+        </>
+      )}
+    </>
   );
 };
 export default ViewTickets;
