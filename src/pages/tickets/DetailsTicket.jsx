@@ -27,7 +27,7 @@ const DetailsTicket = () => {
       {isLoading ? (
         <div className="loading">Loading....</div>
       ) : (
-        Object.values(data).map((ticket) => {
+        Object.values(data)?.map((ticket) => {
           return (
             <div className="response-container" key={ticket.id}>
               <h4 style={{ textAlign: "center" }}>
