@@ -7,12 +7,13 @@ import { basURL } from "../../utils/baseURL";
 const ViewTickets = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [message, setMessage] = useState();
   const closeTicket = (id) => {
     axios
       .put(basURL + `/tickets/${id}`)
       .then((response) => {
+        setMessage(response.data.message);
         window.location.reload();
-        console.log("Ticket Closed");
       })
       .catch();
   };
@@ -35,6 +36,7 @@ const ViewTickets = () => {
       ) : (
         <>
           <div className="main">
+            {message && message}
             <h1>Tickets</h1>
             {data &&
               Object.values(data)[0].map((ticket) => {
@@ -50,7 +52,7 @@ const ViewTickets = () => {
                           Close
                         </button>
                         <button type="button" className="reply-button">
-                          <Link to={`/response/ticker/${ticket.id}`}>
+                          <Link to={`/response/ticket/${ticket.id}`}>
                             Reply
                           </Link>
                         </button>

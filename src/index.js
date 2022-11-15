@@ -26,7 +26,7 @@ root.render(
         <Route path="/tickets/add" element={<AddTickets />} />
         <Route path="/tickets/view" element={<ViewTickets />} />
         <Route path="/ticket/details/:id" element={<DetailsTicket />} />
-        <Route path="/response/ticker/:id" element={<ReplyTickets />} />
+        <Route path="/response/ticket/:id" element={<ReplyTickets />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

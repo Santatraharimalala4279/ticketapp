@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../../assets/css/ticketRegistration.css";
 import { basURL } from "../../utils/baseURL";
 const ReplyTickets = ({ id }) => {
+  console.log(id);
   const [file, setFile] = useState();
   const [message, setMessage] = useState();
   const handleSubmit = (event) => {
@@ -64,7 +65,13 @@ const ReplyTickets = ({ id }) => {
           <b>File</b>
         </label>
         <input type="file" onChange={handleChange} id="file" />
-        <button type="button" onClick={handleSubmit} className="registerbtn">
+        <button
+          type="button"
+          onClick={() => {
+            handleSubmit(localStorage.getItem("tickerId"));
+          }}
+          className="registerbtn"
+        >
           Reply
         </button>
       </form>
