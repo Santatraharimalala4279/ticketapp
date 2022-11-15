@@ -46,3 +46,11 @@ button.close-button{
     float: right;
     padding: 2px;
 }
+button.reply-button {
+    background-color: rgb(39, 36, 233);
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    float: right;
+    padding: 2px;
+}

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import Ticket from "../../components/Tickets";
+
 import "../../assets/css/viewTickets.css";
 const DetailsTicket = ({ id }) => {
   return (
     <>
-      <Ticket>
-        <Link to="/tickets/view"> Back to Ticket </Link>
-      </Ticket>
+      <h3>Ticket {id}</h3>
+      <Link to="/tickets/view"> Back to Ticket </Link>
+
       <div className="response-container">
         <p>Response</p>
       </div>

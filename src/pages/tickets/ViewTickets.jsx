@@ -7,11 +7,13 @@ import { basURL } from "../../utils/baseURL";
 const ViewTickets = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const closeTicket = (e, id) => {
-    e.preventDefault();
+  const closeTicket = (id) => {
     axios
       .put(basURL + `/tickets/${id}`)
-      .then((response) => {})
+      .then((response) => {
+        window.location.reload();
+        console.log("Ticket Closed");
+      })
       .catch();
   };
   useEffect(() => {
@@ -36,18 +38,29 @@ const ViewTickets = () => {
             <h1>Tickets</h1>
             {data &&
               Object.values(data)[0].map((ticket) => {
-                return (
-                  <Ticket ticket={ticket} key={ticket.id}>
-                    <button
-                      type="button"
-                      className="close-button"
-                      onClick={closeTicket}
-                    >
-                      Close
-                    </button>
-                    <Link to={`/ticket/details/2`}>More details</Link>
-                  </Ticket>
-                );
+                if (!ticket.close) {
+                  return (
+                    <>
+                      <Ticket ticket={ticket} key={ticket.id}>
+                        <button
+                          type="button"
+                          className="close-button"
+                          onClick={() => closeTicket(ticket.id)}
+                        >
+                          Close
+                        </button>
+                        <button type="button" className="reply-button">
+                          <Link to={`/response/ticker/${ticket.id}`}>
+                            Reply
+                          </Link>
+                        </button>
+                        <Link to={`/ticket/details/${ticket.id}`}>
+                          More details
+                        </Link>
+                      </Ticket>
+                    </>
+                  );
+                }
               })}
           </div>
         </>

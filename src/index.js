@@ -9,6 +9,7 @@ import ViewTickets from "./pages/tickets/ViewTickets";
 import Register from "./pages/authentification/Register";
 import DetailsTicket from "./pages/tickets/DetailsTicket";
 import NotFound from "./pages/NotFound";
+import ReplyTickets from "./pages/tickets/ReplyTickets";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -24,7 +25,8 @@ root.render(
         <Route path="/user/register" element={<Register />} />
         <Route path="/tickets/add" element={<AddTickets />} />
         <Route path="/tickets/view" element={<ViewTickets />} />
-        <Route path="/ticket/details/2" element={<DetailsTicket />} />
+        <Route path="/ticket/details/:id" element={<DetailsTicket />} />
+        <Route path="/response/ticker/:id" element={<ReplyTickets />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
