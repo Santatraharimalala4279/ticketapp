@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable array-callback-return */
 import axios from "axios";
 import { useEffect, useState } from "react";

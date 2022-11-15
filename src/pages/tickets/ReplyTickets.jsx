@@ -7,7 +7,7 @@ const ReplyTickets = () => {
   const { id } = useParams();
   const [file, setFile] = useState();
   const [message, setMessage] = useState();
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     const data = new FormData();
     data.append("file", file);
     axios
@@ -20,10 +20,9 @@ const ReplyTickets = () => {
         }
       )
       .then((response) => {
-        setMessage(response.data.message);
         if (file) {
           axios
-            .post(basURL + `/file/false/${response.data.ticketId}`, data)
+            .post(basURL + `/file/false/${response.data.response.id}`, data)
             .then((response) => {
               setMessage(response.data.message);
             })
