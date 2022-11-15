@@ -6,11 +6,9 @@ const Ticket = ({ children, ticket }) => {
           <strong>Ticket N° {ticket.id}</strong>
         </span>
         <br />
-        <span>User {ticket.id}</span>
+        <span>User : {ticket.user.email}</span>
         <h4>Description :</h4>
         <p>{ticket.description}</p>
-        <h4>Attachement</h4>
-        <p>File</p>
         {children}
       </div>
     </div>

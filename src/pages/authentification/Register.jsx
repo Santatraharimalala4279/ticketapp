@@ -10,6 +10,7 @@ const Register = () => {
       .post(`http://localhost:5000/api/v1/auth/register`, {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
+        passwordConfirm: document.getElementById("confirm").value,
         admin: document.getElementById("admin").checked,
       })
       .then((response) => {
@@ -19,10 +20,10 @@ const Register = () => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.userID);
         localStorage.setItem("admin", response.data.admin);
-        window.location("/");
+        window.location.reload();
+        window.location.replace("/");
       })
       .catch((error) => {
-        console.log(error);
         setError(true);
         setMessage(error.data.message);
       });
@@ -33,7 +34,7 @@ const Register = () => {
       <div id="formContent">
         <h2 className="active"> Sign Up </h2>
         <form>
-          <span style={!isError ? { color: "red" } : { color: "green" }}>
+          <span style={isError ? { color: "red" } : { color: "green" }}>
             {message}
           </span>
           <input

@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useParams } from "react-router";
 import "../../assets/css/ticketRegistration.css";
 import { basURL } from "../../utils/baseURL";
-const ReplyTickets = ({ id }) => {
-  console.log(id);
+const ReplyTickets = () => {
+  const { id } = useParams();
   const [file, setFile] = useState();
   const [message, setMessage] = useState();
   const handleSubmit = (event) => {
@@ -15,6 +16,7 @@ const ReplyTickets = ({ id }) => {
           `/response/user/${localStorage.getItem("userId")}/ticket/${id}`,
         {
           text: document.getElementById("description").value,
+          ticketsId: id,
         }
       )
       .then((response) => {
@@ -23,8 +25,7 @@ const ReplyTickets = ({ id }) => {
           axios
             .post(basURL + `/file/false/${response.data.ticketId}`, data)
             .then((response) => {
-              console.log("File saved!");
-              setMessage("File saved!");
+              setMessage(response.data.message);
             })
             .catch((err) => {
               console.log(err);
@@ -65,13 +66,7 @@ const ReplyTickets = ({ id }) => {
           <b>File</b>
         </label>
         <input type="file" onChange={handleChange} id="file" />
-        <button
-          type="button"
-          onClick={() => {
-            handleSubmit(localStorage.getItem("tickerId"));
-          }}
-          className="registerbtn"
-        >
+        <button type="button" onClick={handleSubmit} className="registerbtn">
           Reply
         </button>
       </form>

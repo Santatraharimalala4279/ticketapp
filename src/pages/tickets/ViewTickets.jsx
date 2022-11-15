@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -15,7 +16,9 @@ const ViewTickets = () => {
         setMessage(response.data.message);
         window.location.reload();
       })
-      .catch();
+      .catch((error) => {
+        console.log(error);
+      });
   };
   useEffect(() => {
     setLoading(true);
@@ -44,13 +47,17 @@ const ViewTickets = () => {
                   return (
                     <>
                       <Ticket ticket={ticket} key={ticket.id}>
-                        <button
-                          type="button"
-                          className="close-button"
-                          onClick={() => closeTicket(ticket.id)}
-                        >
-                          Close
-                        </button>
+                        {ticket.user_id == localStorage.getItem("userId") ||
+                        localStorage.getItem("admin") == true ? (
+                          <button
+                            type="button"
+                            className="close-button"
+                            onClick={() => closeTicket(ticket.id)}
+                          >
+                            Close
+                          </button>
+                        ) : null}
+
                         <button type="button" className="reply-button">
                           <Link to={`/response/ticket/${ticket.id}`}>
                             Reply
